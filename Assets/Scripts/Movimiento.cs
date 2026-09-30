@@ -1,40 +1,32 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Movimiento : MonoBehaviour
 {
-    public int camino;
-    public int lateral;
-
-    int posicionZ;
+    private Vector2 movimiento;
     void Start()
     {
 
-    }
+    }   
 
-    void Update()
+    public void OnForward(InputValue value)
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            avanzar();
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            retroceder();
-        }
+        movimiento = value.Get<Vector2>();
     }
-    public void avanzar()
+    public void OnDown(InputValue value)
     {
-        posicionZ++;
-        if (posicionZ > camino)
-        {
-            camino = posicionZ;
-        }
+        movimiento = value.Get<Vector2>();
     }
-    public void retroceder()
+    public void OnRight(InputValue value)
     {
-        if (posicionZ > camino - 3)
-        {
-            posicionZ--;
-        }
+        movimiento = value.Get<Vector2>();
+    }
+    public void OnLeft(InputValue value)
+    {
+        movimiento = value.Get<Vector2>();
+    }
+    private void Update()
+    {
+        transform.Translate(movimiento.x * Time.deltaTime * 5, 0, movimiento.y * Time.deltaTime * 5);
     }
 }
