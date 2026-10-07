@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class Camara : MonoBehaviour
 {
-    public Transform player;
+    public Transform playerPosition;
+    public float velocity;
     void Start()
     {
         
     }
     void LateUpdate()
     {
-        Vector3 cameraPosition = new(player.position.x + 3, 7, player.position.z - 7);
-        Camera.main.transform.position = cameraPosition;
+        transform.Translate(Vector3.forward * velocity * Time.deltaTime, Space.World);
+        if(transform.position.z > playerPosition.position.z)
+        {
+            Debug.Log("el jugador esta detras");
+        }
     }
 }
