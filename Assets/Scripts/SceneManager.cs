@@ -25,7 +25,7 @@ public class SceneManager : MonoBehaviour
         }
         private int direccion;
 
-        void MovimientoObstaculos()
+        void Coche_Movimiento()
         { 
             if (direccion < 0) 
             {
