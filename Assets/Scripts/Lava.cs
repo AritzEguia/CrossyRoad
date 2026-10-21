@@ -15,6 +15,6 @@ public class Lava : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        // GameManager.Instance.Morir(); 
+        //GameManager.Instance.Morir(); 
     }
 }
