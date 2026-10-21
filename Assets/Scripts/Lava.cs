@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Lava : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,8 +13,18 @@ public class Lava : MonoBehaviour
     {
         
     }
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter3D(Collider other)
     {
-        // GameManager.Instance.Morir(); 
+        if(other.CompareTag( "Player"))
+        {
+            Morir();
+        }
+    }
+
+    void Morir()
+    {
+        Debug.Log("Tu alma se ha fundido con la lava");
     }
 }
+
+
