@@ -23,7 +23,7 @@ public class Lava : MonoBehaviour
 
     void Morir()
     {
-        Debug.Log("Tu alma se ha fundido con la lava");
+        SceneManager.("EscenaMuerte");
     }
 }
 
