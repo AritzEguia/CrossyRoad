@@ -1,16 +1,33 @@
 using UnityEngine;
+using System.Collections;
 
 public class SpawningManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public GameObject[] terrenoPrefabs;
+    public Transform player;
+    private int aumento = 0;
+    private Vector3 posicion;
+    private bool spawning = false;
     void Start()
     {
-        
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (!spawning)
+        {
+            spawning = true;
+            StartCoroutine(SpawnTerrain());
+        }
+    }
+    IEnumerator SpawnTerrain()
+    {
+        while (true)
+        {
+            posicion = new Vector3(0, 0, aumento);
+            int index = Random.Range(0, terrenoPrefabs.Length);
+            Instantiate(terrenoPrefabs[index], posicion, Quaternion.identity);
+            aumento++;
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
