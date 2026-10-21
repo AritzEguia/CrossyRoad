@@ -8,6 +8,8 @@ public class SpawningManager : MonoBehaviour
     private int aumento = 0;
     private Vector3 posicion;
     private bool spawning = false;
+
+ 
     void Start()
     {
     }
