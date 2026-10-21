@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,6 +26,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Morir(string NomEscena)
+    {
+        Destroy(Player);
+        //////////////////SceneManager.LoadScene(NomEscena);
     }
 
 }

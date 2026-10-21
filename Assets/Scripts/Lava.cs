@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Lava : MonoBehaviour
 {
+    public string NomEscena;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,6 +16,9 @@ public class Lava : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        //GameManager.Instance.Morir(); 
+        if (CompareTag("Player"))
+        {
+            GameManager.Instance.Morir(NomEscena);
+        }
     }
 }
