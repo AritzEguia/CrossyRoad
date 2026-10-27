@@ -1,35 +1,59 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class SpawningManager : MonoBehaviour
 {
-    public GameObject[] terrenoPrefabs;
-    public Transform player;
-    private int aumento = 0;
-    private Vector3 posicion;
-    private bool spawning = false;
+    [Header("Prefabs del terreno")]
+    [SerializeField] private GameObject grassPrefab;
+    [SerializeField] private GameObject lavaPrefab;
+    [SerializeField] private GameObject roadPrefab;
 
- 
+    [Header("Configuracion")]
+    [SerializeField] private Transform player;
+    [SerializeField] private Camera camara;
+    [SerializeField] private int filasIniciales = 20;
+    [SerializeField] private float distanciaEntreFilas = 1f;
+    private List<GameObject> filas = new List<GameObject>();
+
+    private GameObject[] terrenoPrefabs;
+    private float siguienteZ;
+
     void Start()
     {
+        terrenoPrefabs = new GameObject[] { grassPrefab, lavaPrefab, roadPrefab};
+        for (int i = 0; i < filasIniciales; i++)
+        {
+            CrearFila();
+        }
     }
     void Update()
     {
-        if (!spawning)
+        foreach (GameObject fila in filas)
         {
-            spawning = true;
-            StartCoroutine(SpawnTerrain());
+            if (fila.activeSelf && fila.transform.position.z < camara.transform.position.z)
+            {
+                ReciclarFila(fila);
+            }
         }
     }
-    IEnumerator SpawnTerrain()
+    void CrearFila()
     {
-        while (true)
-        {
-            posicion = new Vector3(0, 0, aumento);
-            int index = Random.Range(0, terrenoPrefabs.Length);
-            Instantiate(terrenoPrefabs[index], posicion, Quaternion.identity);
-            aumento++;
-            yield return new WaitForSeconds(1f);
-        }
+        int index = Random.Range(0, terrenoPrefabs.Length);
+
+        GameObject fila = Instantiate(terrenoPrefabs[index], new Vector3(0, 0, siguienteZ), Quaternion.identity);
+
+        filas.Add(fila);
+        siguienteZ += distanciaEntreFilas;
+    }
+    void ReciclarFila(GameObject fila)
+    {
+        fila.SetActive(false);
+
+        fila.transform.position = new Vector3(0, 0, siguienteZ);
+
+        siguienteZ += distanciaEntreFilas;
+
+        fila.SetActive(true);
     }
 }
