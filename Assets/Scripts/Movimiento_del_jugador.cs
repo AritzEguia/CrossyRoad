@@ -70,20 +70,4 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.LookRotation(targetDirection);
         }
     }
-    float posZMax = 0;
-
-    public void Update()
-    {
-        float posZ = transform.position.z;
-        
-        if (posZ > posZMax)
-        {
-            posZMax = posZ;
-        }
-<<<<<<< Updated upstream
-        Debug.Log("Puntuación: " + posZMax);
-=======
-        //Debug.Log("Posición del Player: " + posZMax);
->>>>>>> Stashed changes
-    }
 }
