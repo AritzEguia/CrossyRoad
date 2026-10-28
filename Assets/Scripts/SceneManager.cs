@@ -21,26 +21,26 @@ public class SceneManager : MonoBehaviour
     {
 
     }
-    public IEnumerator Coche_Movimiento(GameObject coche){
-        if (direccion < 0)
-        {
-            coche.transform.Rotate(0f, 180f, 0f);
-        }
+    //public IEnumerator Coche_Movimiento(GameObject coche)
+    //{
+    //    if (direccion < 0)
+    //    {
+    //        coche.transform.Rotate(0f, 180f, 0f);
+    //    }
 
-        coche.transform.Translate(Vector3.right * speed * Time.deltaTime); //Mueve obstaculo en eje X
+    //    coche.transform.Translate(Vector3.right * speed * Time.deltaTime); //Mueve obstaculo en eje X
 
-        if (speed > 0 && transform.position.x > limitX) //Reiniciar posicion si cruza el limite
-
-        {
-            coche.transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
-        }
-        else if (speed < 0 && transform.position.x < -limitX)
-        {
-            coche.transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
-        }
-        yield return new WaitForSeconds(2f);
-    }
-    public void coche_Movimiento(GameObject coche){
-        StartCoroutine(Coche_Movimiento(coche));
+    //    if (speed > 0 && transform.position.x > limitX) //Reiniciar posicion si cruza el limite
+    //    {
+    //        coche.transform.position = new Vector3(-limitX, transform.position.y, transform.position.z);
+    //    }
+    //    else if (speed < 0 && transform.position.x < -limitX)
+    //    {
+    //        coche.transform.position = new Vector3(limitX, transform.position.y, transform.position.z);
+    //    }
+    //    yield return new WaitForSeconds(2f);
+    //}
+    public void Coche_Movimiento(GameObject coche){
+        
     }
 }

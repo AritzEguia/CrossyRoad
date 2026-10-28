@@ -9,8 +9,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Main_EscenaPrincipal.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+<<<<<<< Updated upstream
     path: Assets/Scenes/Muerte.unity
     guid: 96442e6e1d8d8454395216e2a1c55101
+=======
+    path: Assets/Scenes/AritzEguia.unity
+    guid: 594ad5b50a9d3ab478596a416d965783
+>>>>>>> Stashed changes
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

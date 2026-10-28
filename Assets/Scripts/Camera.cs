@@ -11,10 +11,13 @@ public class Camara : MonoBehaviour
     }
     void LateUpdate()
     {
+        if (playerPosition == null)
+            return;
+
         transform.Translate(Vector3.forward * velocity * Time.deltaTime, Space.World);
         if(transform.position.z > playerPosition.position.z)
         {
-            Debug.Log("el jugador esta detras");
+           Debug.Log("el jugador esta detras");
         }
     }
 }

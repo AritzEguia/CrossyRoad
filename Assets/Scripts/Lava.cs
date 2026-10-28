@@ -16,9 +16,10 @@ public class Lava : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.Instance.Morir(NomEscena);
+            Destroy(other.gameObject);
+            //GameManager.Instance.Morir(NomEscena);
         }
     }
 }
