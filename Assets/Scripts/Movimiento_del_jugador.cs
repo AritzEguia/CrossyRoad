@@ -76,10 +76,10 @@ public class PlayerMovement : MonoBehaviour
     {
         float posZ = transform.position.z;
         float posZMax = 0;
-        if (posZ > posZMax)
+        if (posZ >= posZMax)
         {
             posZMax = posZ;
+            Debug.Log("Puntuación: " + posZMax);
         }
-        Debug.Log("Posición del Player: " + posZMax);
     }
 }
