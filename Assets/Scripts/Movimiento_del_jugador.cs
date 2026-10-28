@@ -80,6 +80,10 @@ public class PlayerMovement : MonoBehaviour
         {
             posZMax = posZ;
         }
+<<<<<<< Updated upstream
         Debug.Log("Puntuación: " + posZMax);
+=======
+        //Debug.Log("Posición del Player: " + posZMax);
+>>>>>>> Stashed changes
     }
 }

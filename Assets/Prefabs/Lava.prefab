@@ -688,6 +688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2121571014983429988}
   - component: {fileID: 7453965988120438582}
+  - component: {fileID: 1664177733940938924}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Untagged
@@ -736,8 +737,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14, y: 0.1, z: 2}
-  m_Center: {x: 0, y: -0.1, z: 0}
+  m_Size: {x: 14, y: 1.7207142, z: 1.8209637}
+  m_Center: {x: 0, y: -0.79964274, z: 0.025524437}
+--- !u!114 &1664177733940938924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5475011424479423057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5362882e9fd691b4286200ae442b5ef1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Lava
+  NomEscena: AritzEguia
 --- !u!1 &7718265496676821251
 GameObject:
   m_ObjectHideFlags: 0

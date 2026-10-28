@@ -17,7 +17,7 @@ public class SpawningManager : MonoBehaviour
     private List<GameObject> filas = new List<GameObject>();
 
     private GameObject[] terrenoPrefabs;
-    private float siguienteZ;
+    public float siguienteZ;
 
     void Start()
     {
