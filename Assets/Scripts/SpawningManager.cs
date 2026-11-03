@@ -50,7 +50,9 @@ public class SpawningManager : MonoBehaviour
     {
         fila.SetActive(false);
 
-        fila.transform.position = new Vector3(0, 0, siguienteZ);
+        int index = Random.Range(0, terrenoPrefabs.Length);
+
+        fila = Instantiate(terrenoPrefabs[index], new Vector3(0, 0, siguienteZ), Quaternion.identity);
 
         siguienteZ += distanciaEntreFilas;
 
