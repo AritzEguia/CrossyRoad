@@ -8,8 +8,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving;
 
     [SerializeField] private float moveDistance = 1f; // Distancia de cada salto
-    [SerializeField] private LayerMask obstacleLayers = ~0; // Capas que bloquean (por defecto todas)
-    [SerializeField][Range(0.1f, 1f)] private float boxSizeMultiplier = 0.9f; // Reduce un poco la caja para no chocar con suelo/paredes pegadas
+    [SerializeField] private LayerMask CapasObstaculos = ~0; // Capas que bloquean (por defecto todas)
+    [SerializeField][Range(0.1f, 1f)] private float TamañoCollider = 0.9f; // Reduce un poco la caja para no chocar con suelo/paredes pegadas
 
     private Collider playerCollider;
 
@@ -85,18 +85,18 @@ public class PlayerMovement : MonoBehaviour
     // Comprueba si en la posicion de destino hay algun collider que no sea trigger
     private bool IsBlocked(Vector3 direction)
     {
-        Bounds bounds = playerCollider != null
+        Bounds limites = playerCollider != null
             ? playerCollider.bounds
             : new Bounds(transform.position, Vector3.one);
 
-        Vector3 center = bounds.center + direction * moveDistance;
-        Vector3 halfExtents = bounds.extents * boxSizeMultiplier;
+        Vector3 centro = limites.center + direction * moveDistance;
+        Vector3 halfExtents = limites.extents * TamañoCollider;
 
         Collider[] hits = Physics.OverlapBox(
-            center,
+            centro,
             halfExtents,
             Quaternion.identity,
-            obstacleLayers,
+            CapasObstaculos,
             QueryTriggerInteraction.Ignore); // Ignora los triggers
 
         foreach (Collider hit in hits)
