@@ -8,10 +8,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isMoving;
 
     [SerializeField] private float moveDistance = 1f; // Distancia de cada salto
+    [SerializeField] private LayerMask CapasObstaculos = ~0; // Capas que bloquean (por defecto todas)
+    [SerializeField][Range(0.1f, 1f)] private float TamañoCollider = 0.9f; // Reduce un poco la caja para no chocar con suelo/paredes pegadas
+
+    private Collider playerCollider;
 
     void Awake()
     {
         inputActions = new GameInput();
+        playerCollider = GetComponentInChildren<Collider>();
     }
     //Ejecuta el codigo cuando se inicia el juego
     void OnEnable()
@@ -63,11 +68,45 @@ public class PlayerMovement : MonoBehaviour
         {
             isMoving = true;
 
+            // Rota al jugador (aunque no pueda avanzar, mira hacia donde lo intenta)
+            transform.rotation = Quaternion.LookRotation(targetDirection);
+
+            // Si hay un collider SIN trigger en la casilla de destino, no se mueve
+            if (IsBlocked(targetDirection))
+            {
+                return;
+            }
+
             // Mueve al jugador en 3D
             transform.position += targetDirection * moveDistance;
-
-            // Rota al jugador
-            transform.rotation = Quaternion.LookRotation(targetDirection);
         }
+    }
+
+    // Comprueba si en la posicion de destino hay algun collider que no sea trigger
+    private bool IsBlocked(Vector3 direction)
+    {
+        Bounds limites = playerCollider != null
+            ? playerCollider.bounds
+            : new Bounds(transform.position, Vector3.one);
+
+        Vector3 centro = limites.center + direction * moveDistance;
+        Vector3 halfExtents = limites.extents * TamañoCollider;
+
+        Collider[] hits = Physics.OverlapBox(
+            centro,
+            halfExtents,
+            Quaternion.identity,
+            CapasObstaculos,
+            QueryTriggerInteraction.Ignore); // Ignora los triggers
+
+        foreach (Collider hit in hits)
+        {
+            // Ignora los colliders del propio jugador
+            if (hit.transform.IsChildOf(transform)) continue;
+            Debug.Log($"Bloqueado por: {hit.name} (isTrigger: {hit.isTrigger})", hit);
+            return true;
+        }
+
+        return false;
     }
 }
