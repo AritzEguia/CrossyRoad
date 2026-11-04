@@ -1,2 +1,16 @@
 fileFormatVersion: 2
 guid: 44881e1a9f306a54cb4e400c46660386
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - grassPrefab: {fileID: 2379881720946265027, guid: 06f0bc00538c294479e97c87eba452bf, type: 3}
+  - lavaPrefab: {fileID: 5475011424479423057, guid: cc3386868b5da2f4aa502b7f32271bb6, type: 3}
+  - roadPrefab: {fileID: 3316306038843109024, guid: c12d8f1c21b48e64d8a73ae36c147bf7, type: 3}
+  - player: {fileID: 2422728311216189621, guid: 007efd2dacfe3ad468abd7362b8eb3a6, type: 3}
+  - camara: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
