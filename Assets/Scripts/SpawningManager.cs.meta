@@ -8,7 +8,7 @@ MonoImporter:
   - lavaPrefab: {fileID: 5475011424479423057, guid: cc3386868b5da2f4aa502b7f32271bb6, type: 3}
   - roadPrefab: {fileID: 3316306038843109024, guid: c12d8f1c21b48e64d8a73ae36c147bf7, type: 3}
   - player: {fileID: 2422728311216189621, guid: 007efd2dacfe3ad468abd7362b8eb3a6, type: 3}
-  - camara: {instanceID: 0}
+  - camara: {fileID: 2316434603095239837, guid: a261719395d37354e929b1523d2c6c2d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

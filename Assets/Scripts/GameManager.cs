@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player;
     
-    Vector3 posicionInicio = new Vector3( 0.5f, 1, 5.5f);
+    Vector3 posicionInicio = new Vector3( 0f, 1, 6f);
     Quaternion rotacionInicial = Quaternion.identity;
     void Awake()
     {
