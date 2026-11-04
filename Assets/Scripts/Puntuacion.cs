@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class Puntuacion : MonoBehaviour
 {
@@ -8,14 +8,15 @@ public class Puntuacion : MonoBehaviour
     public TextMeshProUGUI Texto;
 
     float posZMax = 0;
-    public void Update()
+    void Update()
     {
-        float posZ = transform.position.z;
+        float posZ = Player.position.z;
 
         if (posZ > posZMax)
         {
             posZMax = posZ;
         }
         Texto.text = posZMax.ToString();
+        Debug.Log(Texto);
     }
 }

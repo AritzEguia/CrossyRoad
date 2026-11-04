@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5362882e9fd691b4286200ae442b5ef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lava
-  NomEscena: AritzEguia
+  NomEscena: Main_Escena Principal
 --- !u!1 &7718265496676821251
 GameObject:
   m_ObjectHideFlags: 0
