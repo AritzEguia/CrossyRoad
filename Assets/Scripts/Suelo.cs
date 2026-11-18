@@ -9,7 +9,6 @@ public class Suelo : MonoBehaviour
     public Transform t3;
     public Transform t4;
     public Transform t5;
-    public float speed = 2f;
 
     void Start()
     {
@@ -18,12 +17,31 @@ public class Suelo : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     private void SpawnObstaculo()
     {
-        float posz = GameManager.Instance.spawningManager.siguienteZ;
-        int posIniciail = Random.Range(1, 6); //Coge un numero entre 1 y 5 para saber en que posicion spawnea
+        int pos = Random.Range(1, 6);
+        if (pos == 1)
+        {
+            Instantiate(obstaculo, new Vector3(t1.transform.position.x, 0.5f, GameManager.Instance.spawningManager.siguienteZ), Quaternion.identity);
+        }
+        else if(pos == 2)
+        {
+            Instantiate(obstaculo, new Vector3(t2.transform.position.x, 0.5f, GameManager.Instance.spawningManager.siguienteZ), Quaternion.identity);
+        }
+        else if (pos == 3)
+        {
+            Instantiate(obstaculo, new Vector3(t3.transform.position.x, 0.5f, GameManager.Instance.spawningManager.siguienteZ), Quaternion.identity);
+        }
+        else if (pos == 4)
+        {
+            Instantiate(obstaculo, new Vector3(t4.transform.position.x, 0.5f, GameManager.Instance.spawningManager.siguienteZ), Quaternion.identity);
+        }
+        else if (pos == 5)
+        {
+            Instantiate(obstaculo, new Vector3(t5.transform.position.x, 0.5f, GameManager.Instance.spawningManager.siguienteZ), Quaternion.identity);
+        }
     }
 }
