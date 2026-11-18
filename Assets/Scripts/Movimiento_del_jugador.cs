@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
     private GameInput inputActions;
     private Vector2 moveInput;
     private bool isMoving;
+    private Transform barcoActual;
+    private Transform padreOriginal;
 
     [SerializeField] private float moveDistance = 1f; // Distancia de cada salto
     [SerializeField] private LayerMask CapasObstaculos = ~0; // Capas que bloquean (por defecto todas)

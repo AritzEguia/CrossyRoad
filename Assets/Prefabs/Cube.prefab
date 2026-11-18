@@ -126,7 +126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5309648a1fc894e97c815c0fecd138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveDistance: 1
+  moveDistance: 2
+  CapasObstaculos:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  "Tama\xF1oCollider": 0.9
 --- !u!54 &6691246124848892926
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,4 +157,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
