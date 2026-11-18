@@ -8,15 +8,33 @@ public class Puntuacion : MonoBehaviour
     public TextMeshProUGUI Texto;
 
     float posZMax = 0;
+    float puntuaciónActual = 0;
+    float posZinicio;
+
+    private void Start()
+    {
+        posZinicio = Player.position.z;
+        ActualizarTexto();
+    }
     void Update()
     {
-        float posZ = Player.position.z;
+        float distanciaActual = Player.position.z - posZinicio;
 
-        if (posZ > posZMax)
+        if (distanciaActual > Player.position.z)
         {
-            posZMax = posZ;
+            posZMax = distanciaActual;
+
+            int nuevosPuntos = Mathf.FloorToInt(posZMax);
+
+            if (nuevosPuntos > puntuaciónActual)
+            {
+                puntuaciónActual = nuevosPuntos;
+                ActualizarTexto();
+            }
         }
-        Texto.text = posZMax.ToString();
-        Debug.Log(Texto);
+    }
+    private void ActualizarTexto()
+    {
+        Texto.text = puntuaciónActual.ToString();
     }
 }
