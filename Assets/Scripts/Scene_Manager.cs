@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
 using JetBrains.Annotations; //Para poder usar list
-public class SceneManager : MonoBehaviour
+public class Scene_Manager : MonoBehaviour
 {
     public float speed = 5f;
     public float limitX = 15f;
     private int direccion;
-    public static SceneManager sceneInstance;
+    public static Scene_Manager sceneInstance;
     void Awake()
     {
         if (sceneInstance == null) sceneInstance = this;

@@ -72,12 +72,12 @@ public class Lava : MonoBehaviour
         }
         yield return null;
     }
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
-            GameManager.Instance.Morir(NomEscena);
+            Destroy(collision.gameObject);
+            GameManager.Instance.Morir("Muerte");
         }
     }
 }

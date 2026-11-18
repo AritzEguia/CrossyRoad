@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public void Morir(string NomEscena)
     {
         Destroy(Player);
-        //////////////////SceneManager.LoadScene(NomEscena);
+        SceneManager.LoadScene(NomEscena);
     }
 
 }
