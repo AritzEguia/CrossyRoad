@@ -18,7 +18,7 @@ public class SpawningManager : MonoBehaviour
 
     private GameObject[] terrenoPrefabs;
     public float siguienteZ;
-
+    int contador = 0;
     void Start()
     {
         terrenoPrefabs = new GameObject[] { grassPrefab, lavaPrefab, roadPrefab};
@@ -39,12 +39,22 @@ public class SpawningManager : MonoBehaviour
     }
     void CrearFila()
     {
-        int index = Random.Range(0, terrenoPrefabs.Length);
+        
+        if (contador < 5)
+        {
+            GameObject fila = Instantiate(terrenoPrefabs[0], new Vector3(0, 0, siguienteZ), Quaternion.identity);
+            siguienteZ += distanciaEntreFilas;
+            contador++;
+        }
+        else
+        {
+            int index = Random.Range(0, terrenoPrefabs.Length);
 
-        GameObject fila = Instantiate(terrenoPrefabs[index], new Vector3(0, 0, siguienteZ), Quaternion.identity);
+            GameObject fila = Instantiate(terrenoPrefabs[index], new Vector3(0, 0, siguienteZ), Quaternion.identity);
 
-        filas.Add(fila);
-        siguienteZ += distanciaEntreFilas;
+            filas.Add(fila);
+            siguienteZ += distanciaEntreFilas;
+        }
     }
     void ReciclarFila(GameObject fila)
     {

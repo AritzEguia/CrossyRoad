@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1262700932015147887}
   - component: {fileID: 5203622757936514938}
+  - component: {fileID: 3668839661567189307}
   m_Layer: 0
   m_Name: Alma
   m_TagString: Untagged
@@ -42,10 +43,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 4938119361181486929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 918d0c973d7b5a94191184e5e622c6d5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a8dd34c201184c4bb6b0a0cc06321cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coche_Movimiento
-  coche: {fileID: 4938119361181486929}
+  nomEscena: Muerte
+--- !u!65 &3668839661567189307
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4938119361181486929}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.687789, y: 1.9107933, z: 1.7643361}
+  m_Center: {x: -0.020835757, y: 0.6868336, z: -0.008100063}
 --- !u!1001 &58552922778619282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,39 +135,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 44ae058a78937404284b44486c550d15, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4394299551621938271}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44ae058a78937404284b44486c550d15, type: 3}
 --- !u!4 &529943644283251321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 44ae058a78937404284b44486c550d15, type: 3}
   m_PrefabInstance: {fileID: 58552922778619282}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &869595239533965507 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 44ae058a78937404284b44486c550d15, type: 3}
-  m_PrefabInstance: {fileID: 58552922778619282}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &4394299551621938271
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869595239533965507}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4, y: 4, z: 4}
-  m_Center: {x: 0, y: 1.5, z: 0}
