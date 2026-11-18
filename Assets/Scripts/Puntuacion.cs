@@ -4,23 +4,40 @@ using UnityEngine;
 public class Puntuacion : MonoBehaviour
 {
     [Header("Referencias")]
-    public Transform Player;
     public TextMeshProUGUI Texto;
 
-    float posZMax = 0;
+    private Transform Player;
+    private bool player = false;
+    float posZMax = 0f;
     float puntuaciónActual = 0;
     float posZinicio;
 
     private void Start()
     {
-        posZinicio = Player.position.z;
         ActualizarTexto();
     }
     void Update()
     {
+        if (Player == null) 
+        {
+            GameObject objPlayer = GameObject.FindGameObjectWithTag("Player");
+
+            if (objPlayer != null)
+            {
+                Player = objPlayer.transform;
+                if (!player)
+                {
+                    posZinicio = Player.position.z;
+                    player = true;
+                }
+
+            }
+            return;
+        }
+
         float distanciaActual = Player.position.z - posZinicio;
 
-        if (distanciaActual > Player.position.z)
+        if (distanciaActual > posZMax)
         {
             posZMax = distanciaActual;
 
