@@ -12,7 +12,7 @@ public class SpawningManager : MonoBehaviour
     [Header("Configuracion")]
     [SerializeField] private Transform player;
     [SerializeField] private Camera camara;
-    [SerializeField] private int filasIniciales = 20;
+    [SerializeField] private int filasIniciales = 25;
     [SerializeField] private float distanciaEntreFilas = 1f;
     private List<GameObject> filas = new List<GameObject>();
 
