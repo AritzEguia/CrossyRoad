@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using System.Collections;
+using static UnityEditor.PlayerSettings;
 
 public class Lava : MonoBehaviour
 {
@@ -8,70 +10,55 @@ public class Lava : MonoBehaviour
     public GameObject barco;
     public Transform t1;
     public Transform t2;
-    public float speed = 2f;
+    public Queue<GameObject> barcos = new Queue<GameObject>();
     void Start()
     {
-        BarcoMovimiento();
-    }
-
-    void Update()
-    {
-        
-    }
-    private void BarcoMovimiento()
-    {
-        float posZ = GameManager.Instance.spawningManager.siguienteZ;
-        int posInicial = Random.Range(1, 3); //Coge un numero entre 1 y 2 para saber si viene de la derecha o la izquierda
-        if (posInicial == 1)
+        for (int i = 0; i < 5; i++)
         {
-            GameObject g = Instantiate(barco, t1);
-            StartCoroutine(Barco_Movimiento(g, posInicial));
-            //Reseteo de posiciones
-        }
-        else if (posInicial == 2)
-        {
-            GameObject g = Instantiate(barco, t2);
-            StartCoroutine(Barco_Movimiento(g, posInicial));
+            GameObject g = Instantiate(barco);
+            g.SetActive(false);
+            barcos.Enqueue(g);
         }
 
+        StartCoroutine(GenerarBarcosEnCola());
     }
-    public IEnumerator Barco_Movimiento(GameObject barco, float posInicial)
+    private IEnumerator GenerarBarcosEnCola()
     {
-        float elapsedTime = 0;
-        float waitTime = 5;
-        Debug.Log(posInicial);
-        Vector3 T1 = new Vector3(t1.position.x, t1.position.y, t1.position.z);
-        Vector3 T2 = new Vector3(t2.position.x, t2.position.y, t2.position.z);
-        if (posInicial == 1)
+        int direccion = Random.Range(1, 3);
+        Transform origen = (direccion == 1) ? t1 : t2;
+        Transform destino = (direccion == 1) ? t2 : t1;
+
+        while (this.gameObject.activeInHierarchy)
         {
-            while (this.gameObject.activeInHierarchy)
+            if (barcos.Count > 0)
             {
-                while (elapsedTime < waitTime)
-                {
-                    barco.transform.position = Vector3.Lerp(T1, T2, (elapsedTime / waitTime));
-                    elapsedTime += Time.deltaTime;
-                    yield return null;
-                }
-                barco.transform.position = T1;
-                elapsedTime = 0;
+                GameObject barcoActual = barcos.Dequeue(); 
+                barcoActual.transform.position = origen.position;
+                barcoActual.SetActive(true);
+
+                StartCoroutine(MoverBarcoIndividual(barcoActual, origen.position, destino.position));
             }
+
+            float tiempoEspera = Random.Range(2.5f, 4.0f);
+            yield return new WaitForSeconds(tiempoEspera);
         }
-        else
-        {
-            while (this.gameObject.activeInHierarchy)
-            {
-                while (elapsedTime < waitTime)
-                {
-                    barco.transform.position = Vector3.Lerp(T2, T1, (elapsedTime / waitTime));
-                    elapsedTime += Time.deltaTime;
-                    yield return null;
-                }
-                barco.transform.position = T2;
-                elapsedTime = 0;
-            }
-        }
-        yield return null;
     }
+    private IEnumerator MoverBarcoIndividual(GameObject barcoInstancia, Vector3 origen, Vector3 destino)
+    {
+        float elapsedTime = 0f;
+        float waitTime = 10f;
+
+        while (elapsedTime < waitTime)
+        {
+            barcoInstancia.transform.position = Vector3.Lerp(origen, destino, elapsedTime / waitTime);
+            elapsedTime += Time.deltaTime;
+            yield return null; 
+        }
+
+        barcoInstancia.SetActive(false);
+        barcos.Enqueue(barcoInstancia);
+    }
+
     public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))
