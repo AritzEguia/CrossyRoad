@@ -1,75 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class Carretera : MonoBehaviour
 {
     public GameObject coche;
     public Transform t1;
     public Transform t2;
-    public float speed = 2f;
+    public Queue<GameObject> coches = new Queue<GameObject>();
 
     void Start()
     {
-        CocheMovimiento();
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject g = Instantiate(coche);
+            g.SetActive(false);
+            coches.Enqueue(g);
+        }
+        StartCoroutine(GenerarCochesEnCola());
     }
     void Update()
     {
         
     }
+    private IEnumerator GenerarCochesEnCola()
+    {
+        int direccion = Random.Range(1, 3);
+        Transform origen = (direccion == 1) ? t1 : t2;
+        Transform destino = (direccion == 1) ? t2 : t1;
 
-    private void CocheMovimiento() 
-    {
-        float posZ = GameManager.Instance.spawningManager.siguienteZ;
-        int posInicial = Random.Range(1, 3); //Coge un numero entre 1 y 2 para saber si viene de la derecha o la izquierda
-        if (posInicial == 1)
+        while (this.gameObject.activeInHierarchy)
         {
-            GameObject g = Instantiate(coche, t1);
-            StartCoroutine(Coche_Movimiento(g, posInicial));
-            //Reseteo de posiciones
-        }
-        else if (posInicial == 2) 
-        {
-            GameObject g = Instantiate(coche, t2);
-            StartCoroutine(Coche_Movimiento(g, posInicial));
-        }
-        
-    }
-    public IEnumerator Coche_Movimiento(GameObject coche, float posInicial)
-    {
-        float elapsedTime = 0;
-        float waitTime = 5;
-        Debug.Log(posInicial);
-        Vector3 T1 = new Vector3(t1.position.x, t1.position.y, t1.position.z);
-        Vector3 T2 = new Vector3(t2.position.x, t2.position.y, t2.position.z);
-        if (posInicial == 1)
-        {
-            while(this.gameObject.activeInHierarchy)
-            { 
-                while(elapsedTime < waitTime)
-                {
-                    coche.transform.position = Vector3.Lerp(T1, T2, (elapsedTime / waitTime));
-                    elapsedTime += Time.deltaTime;
-                    yield return null;  
-                }
-                coche.transform.position = T1;
-                elapsedTime = 0;
-            }
-        }
-        else
-        {
-            while (this.gameObject.activeInHierarchy)
+            float tiempoEsperaInicial = Random.Range(0, 3);
+            yield return new WaitForSeconds(tiempoEsperaInicial);
+            if (coches.Count > 0)
             {
-                while (elapsedTime < waitTime)
-                {
-                    coche.transform.position = Vector3.Lerp(T2, T1, (elapsedTime / waitTime));
-                    elapsedTime += Time.deltaTime;
-                    yield return null;
-                }
-                coche.transform.position = T2;
-                elapsedTime = 0;
+                GameObject barcoActual = coches.Dequeue();
+                barcoActual.transform.position = origen.position;
+                barcoActual.SetActive(true);
+
+                StartCoroutine(MoverCocheIndividual(barcoActual, origen.position, destino.position));
             }
+            float tiempoEsperaFinal = Random.Range(1.5f, 3.0f);
+            yield return new WaitForSeconds(tiempoEsperaFinal);
         }
-        yield return null;
     }
+    private IEnumerator MoverCocheIndividual(GameObject cocheInstancia, Vector3 origen, Vector3 destino)
+    {
+        float elapsedTime = 0f;
+        float waitTime = 5f;
+
+        while (elapsedTime < waitTime)
+        {
+            cocheInstancia.transform.position = Vector3.Lerp(origen, destino, elapsedTime / waitTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        cocheInstancia.SetActive(false);
+        coches.Enqueue(cocheInstancia);
+    }
+    
 }

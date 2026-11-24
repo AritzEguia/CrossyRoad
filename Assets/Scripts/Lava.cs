@@ -13,7 +13,7 @@ public class Lava : MonoBehaviour
     public Queue<GameObject> barcos = new Queue<GameObject>();
     void Start()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             GameObject g = Instantiate(barco);
             g.SetActive(false);
@@ -30,6 +30,8 @@ public class Lava : MonoBehaviour
 
         while (this.gameObject.activeInHierarchy)
         {
+            float tiempoEsperaInicial = Random.Range(0, 3);
+            yield return new WaitForSeconds(tiempoEsperaInicial);
             if (barcos.Count > 0)
             {
                 GameObject barcoActual = barcos.Dequeue(); 
@@ -38,9 +40,8 @@ public class Lava : MonoBehaviour
 
                 StartCoroutine(MoverBarcoIndividual(barcoActual, origen.position, destino.position));
             }
-
-            float tiempoEspera = Random.Range(2.5f, 4.0f);
-            yield return new WaitForSeconds(tiempoEspera);
+            float tiempoEsperaFinal = Random.Range(3.0f, 6.0f);
+            yield return new WaitForSeconds(tiempoEsperaFinal);
         }
     }
     private IEnumerator MoverBarcoIndividual(GameObject barcoInstancia, Vector3 origen, Vector3 destino)
