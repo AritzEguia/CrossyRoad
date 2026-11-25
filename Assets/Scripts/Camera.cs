@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class Camara : MonoBehaviour
 {
-    public Transform playerPosition;
+    public GameObject playerPosition;
     public float velocity;
+
     void Start()
     {
-        
+       playerPosition = GameObject.FindWithTag("Player");
     }
     void LateUpdate()
     {
@@ -15,9 +16,11 @@ public class Camara : MonoBehaviour
             return;
 
         transform.Translate(Vector3.forward * velocity * Time.deltaTime, Space.World);
-        if(transform.position.z > playerPosition.position.z)
+        if(transform.position.z > playerPosition.transform.position.z)
         {
            Debug.Log("el jugador esta detras");
+           GameManager.Instance.Morir("Muerte");
         }
+
     }
 }
