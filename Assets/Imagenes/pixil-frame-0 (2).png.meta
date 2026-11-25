@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a4f67855095b674418f5b739a969e8e9
+guid: 3129ddd3c321fc543a0a13378d63f110
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3024251363584809592
-    second: FondoCrossy_0
+      213: -168421969075237668
+    second: pixil-frame-0 (2)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,7 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FondoCrossy_0
+      name: pixil-frame-0 (2)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 87a96fd879c48f920800000000000000
-      internalID: 3024251363584809592
+      spriteID: cdc06e88c15a9adf0800000000000000
+      internalID: -168421969075237668
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FondoCrossy_0: 3024251363584809592
+      pixil-frame-0 (2)_0: -168421969075237668
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
