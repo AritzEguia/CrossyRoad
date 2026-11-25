@@ -2,19 +2,27 @@ using UnityEngine;
 
 public class Plataforma : MonoBehaviour
 {
-    public void OnCollisionEnter(Collision collision)
+    public Transform anclaje;
+
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(transform);
+            Transform objetivo = anclaje != null ? anclaje : transform;
+            collision.transform.SetParent(objetivo);
         }
     }
+
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.transform.SetParent(null);
+            Transform objetivo = anclaje != null ? anclaje : transform;
+
+            if (collision.transform.parent == objetivo)
+            {
+                collision.transform.SetParent(null);
+            }
         }
     }
-
 }
