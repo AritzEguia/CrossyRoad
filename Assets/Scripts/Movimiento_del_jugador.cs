@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform barcoActual;
     private Transform padreOriginal;
     public float distanciaRaycast;
-    
+    private GameObject Player;
 
     [SerializeField] private float moveDistance = 1f; // Distancia de cada salto
     [SerializeField] private LayerMask CapasObstaculos = ~0; // Capas que bloquean (por defecto todas)
@@ -22,13 +22,17 @@ public class PlayerMovement : MonoBehaviour
         inputActions = new GameInput();
         playerCollider = GetComponentInChildren<Collider>();
     }
-    //private void Update()
-    //{
-    //    Vector3 origen = GameManager.Instance.Player.transform.position;
-    //    Vector3 direccion = transform.forward;
+    void Start()
+    {
+        Player = GameObject.FindWithTag("Player");
+    }
+    private void Update()
+    {
+        Vector3 origen = Player.transform.position;
+        Vector3 direccion = transform.forward;
 
-    //    Debug.DrawRay(origen, direccion * distanciaRaycast, Color.red);
-    //}
+        Debug.DrawRay(origen, direccion * distanciaRaycast, Color.red);
+    }
 
     //Ejecuta el codigo cuando se inicia el juego
     void OnEnable()
