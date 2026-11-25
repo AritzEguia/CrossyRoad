@@ -11,6 +11,7 @@ public class Lava : MonoBehaviour
     public Transform t1;
     public Transform t2;
     public Queue<GameObject> barcos = new Queue<GameObject>();
+    public static bool valorTurno = false;
     void Start()
     {
         for (int i = 0; i < 3; i++)
@@ -19,14 +20,15 @@ public class Lava : MonoBehaviour
             g.SetActive(false);
             barcos.Enqueue(g);
         }
-
+        valorTurno = !valorTurno;
         StartCoroutine(GenerarBarcosEnCola());
     }
     private IEnumerator GenerarBarcosEnCola()
     {
-        int direccion = Random.Range(1, 3);
-        Transform origen = (direccion == 1) ? t1 : t2;
-        Transform destino = (direccion == 1) ? t2 : t1;
+        Transform origen;
+        Transform destino;
+        origen = (valorTurno == false) ? t1 : t2;
+        destino = (valorTurno == false) ? t2 : t1;
 
         while (this.gameObject.activeInHierarchy)
         {
